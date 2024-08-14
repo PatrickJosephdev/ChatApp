@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "653630665449",
+    "project_id": "login-4bf72",
+    "storage_bucket": "login-4bf72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653630665449:android:e04a0a758382535ac57678",
+        "android_client_info": {
+          "package_name": "com.example.loginpage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhlI4BB5uXSVw97BXYJmgKzKfxeforlyA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
