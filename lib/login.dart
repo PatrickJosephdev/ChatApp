@@ -1,3 +1,6 @@
+import 'package:chatapp/screen/homescreen.dart';
+import 'package:chatapp/services/auth.dart';
+import 'package:chatapp/widget/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:chatapp/widget/textfield.dart';
 import 'package:chatapp/widget/button.dart';
@@ -13,6 +16,43 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  bool isLoading = false;
+
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
+  void loginUsers() async {
+    String west = await AuthServices().loginUser(
+        email: emailController.text, password: passwordController.text);
+
+    // if Login is success, user has been created and navigate to the next screen
+    // otherwise show the error message in the auth.dart file
+    if (west == 'success') {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const Homescreen(),
+        ),
+      );
+
+      setState(() {
+        isLoading = true;
+      });
+      //show a success message
+      showSnackBar(context, west);
+
+      //navigate to the next screen
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+      // show the error message
+      showSnackBar(context, west);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -35,6 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     icon: Icons.email),
                 TextFieldInpute(
                     textEditingController: passwordController,
+                    isPass: true,
                     hintText: "Enter your password",
                     icon: Icons.lock),
                 const Padding(
@@ -51,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                MyButton(onTab: () {}, text: 'Log In'),
+                MyButton(onTab: loginUsers, text: 'Log In'),
                 SizedBox(
                   height: height / 15,
                 ),
