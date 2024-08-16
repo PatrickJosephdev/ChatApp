@@ -3,7 +3,6 @@ import 'package:chatapp/widget/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:chatapp/login.dart';
 import 'package:chatapp/services/auth.dart';
-import 'package:chatapp/screen/homescreen.dart';
 import 'package:chatapp/widget/snackbar.dart';
 
 class SignUpScreen extends StatefulWidget {

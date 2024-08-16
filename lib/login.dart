@@ -1,4 +1,4 @@
-import 'package:chatapp/screen/homescreen.dart';
+import 'package:chatapp/chat/chatpage.dart';
 import 'package:chatapp/services/auth.dart';
 import 'package:chatapp/widget/snackbar.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,9 @@ class _LoginScreenState extends State<LoginScreen> {
     if (west == 'success') {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const Homescreen(),
+          builder: (context) => ChatPage(
+            email: emailController.text,
+          ),
         ),
       );
 

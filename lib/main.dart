@@ -1,9 +1,9 @@
+import 'package:chatapp/chat/chatpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:chatapp/login.dart';
-import 'package:chatapp/screen/homescreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,9 +41,12 @@ class MyApp extends StatelessWidget {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Homescreen();
+              final user = snapshot.data! as User;
+              return ChatPage(
+                email: user.email,
+              );
             } else {
-              return LoginScreen();
+              return const LoginScreen();
             }
           }),
     );
